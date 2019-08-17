@@ -16,8 +16,8 @@
             <!-- Header -->
             <header class="row align-items-center mb-3">
                 <div class="col-md-3">
-                    <a href="{{ url('/') }}" class="h2 text-decoration-none text-dark">
-                        Lista de produtos
+                    <a href="{{ url('/') }}" class="h3 text-decoration-none text-dark">
+                        @yield('title')
                     </a>
                 </div>
 
@@ -25,7 +25,7 @@
                     <form>
                         <div class="input-group">
                             <input type="text" name="query" class="form-control" placeholder="Buscar produtos baseado no nome, descrição, fornecedor, preço...">
-                            <input type="hidden" name="productsPerPage" value="{{ $productsPerPage }}">
+                            <input type="hidden" name="productsPerPage" value="{{ $productsPerPage ?? 15 }}">
 
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -36,9 +36,10 @@
                     </form>
                 </div>
 
-                <div class="col-md-2 ml-auto">
+                <div class="col-md-3 ml-auto">
                     <a href="{{ url('/products/create') }}" class="btn btn-primary">
-                        Adicionar
+                        <i class="fas fa-plus"></i>
+                        Criar novo produto
                     </a>
                 </div>
             </header>

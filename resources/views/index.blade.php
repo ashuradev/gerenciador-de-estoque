@@ -42,14 +42,48 @@
                         <a class="btn btn-warning btn-sm" href="{{ route('products.edit', [$product]) }}">
                             Editar
                         </a>
-                        <a class="btn btn-danger btn-sm" href="/">
-                            Excluir
-                        </a>
+
+                        <form action="{{ route('products.destroy', [$product]) }}" method="POST">
+                            @csrf 
+                            @method('DELETE')
+
+                            <button class="btn btn-danger btn-sm delete-product"">
+                                Excluir
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    <!-- Confirmation modal -->
+    <div class="modal fade" id="confirm-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmação</h5>
+
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Você tem certeza que deseja excluir este produto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="delete-modal-btn">
+                        Excluir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Pagination -->
     {{ $products->links() }}

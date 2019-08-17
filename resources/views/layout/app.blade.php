@@ -14,34 +14,39 @@
     <div class="jumbotron">
         <div class="container">
             <!-- Header -->
-            <header class="row align-items-center mb-3">
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <a href="{{ url('/') }}" class="h3 text-decoration-none text-dark">
-                        @yield('title')
-                    </a>
-                </div>
+            <header class="mb-3">
+                <div class="row align-items-center">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <a href="{{ url('/') }}" class="h5 text-decoration-none text-dark">
+                            {{ config('app.name') }}
+                        </a>
+                    </div>
 
-                <div class="col-md-5 mb-3 mb-md-0">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" name="query" class="form-control" placeholder="Buscar produtos baseado no nome, descrição, fornecedor, preço...">
-                            <input type="hidden" name="productsPerPage" value="{{ $productsPerPage ?? 15 }}">
+                    <div class="col-md-5 mb-3 mb-md-0">
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" name="query" class="form-control" placeholder="Buscar produtos baseado no nome, descrição, fornecedor, preço...">
 
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
+                    <div class="col-md-3 ml-auto mb-3 mb-md-0">
+                        <a href="{{ url('/products/create') }}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Criar novo produto
+                        </a>
+                    </div>
                 </div>
 
-                <div class="col-md-3 ml-auto mb-3 mb-md-0">
-                    <a href="{{ url('/products/create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>
-                        Criar novo produto
-                    </a>
-                </div>
+                <h6 class="my-2">
+                    @yield('title')
+                </h6>
             </header>
 
             @yield('content')

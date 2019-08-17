@@ -3,25 +3,23 @@
 @section('title', 'Criar novo produto')
 
 @section('content')
-    <form method="POST" class="col-md-6 p-0">
+    <form method="POST" class="col-md-6 p-0" action="{{ route('products.store') }}">
         @csrf
 
         <div class="form-group">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" value="{{ old('name') }}">
+            <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" value="{{ old('name') }}">
 
             @if($errors->has('name'))
-                <div class="invalid-feedback">
+                <span class="invalid-feedback">
                     {{ $errors->first('name') }}
-                </div>
+                </span>
             @endif 
         </div>
 
         <div class="form-group">
             <label for="description">Descrição</label>
-            <textarea type="text" class="form-control" id="description">
-                {{ old('description') }}
-            </textarea>
+            <textarea type="text" name="description" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" id="description">{{ old('description') }}</textarea>
 
             @if($errors->has('description'))
                 <div class="invalid-feedback">
@@ -32,7 +30,7 @@
 
         <div class="form-group">
             <label for="price">Preço</label>
-            <input type="text" class="form-control" id="price" value="{{ old('price') }}">
+            <input type="text" name="price" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" id="price" value="{{ old('price') }}">
 
             @if($errors->has('price'))
                 <div class="invalid-feedback">
@@ -43,7 +41,7 @@
 
         <div class="form-group">
             <label for="vendor">Fornecedor</label>
-            <input type="text" class="form-control" id="vendor" value="{{ old('vendor') }}">
+            <input type="text" name="vendor" class="form-control {{ $errors->has('vendor') ? 'is-invalid' : '' }}" id="vendor" value="{{ old('vendor') }}">
 
             @if($errors->has('vendor'))
                 <div class="invalid-feedback">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Http\Requests\ProductRequest;
 
 class ProductsController extends Controller
 {
@@ -17,15 +18,14 @@ class ProductsController extends Controller
     {
         $query = $request->query('query');
         $productsPerPage = min($request->query('productsPerPage', 15), 50);
+        $products = Product::where('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('description', 'LIKE', '%' . $query . '%')
+            ->orWhere('price', 'LIKE', '%' . $query . '%')
+            ->orWhere('vendor', 'LIKE', '%' . $query . '%')
+            ->latest('id')
+            ->paginate($productsPerPage);
 
-        return view('index', [
-            'products' => Product::where('name', 'LIKE', '%' . $query . '%')
-                ->orWhere('description', 'LIKE', '%' . $query . '%')
-                ->orWhere('price', 'LIKE', '%' . $query . '%')
-                ->orWhere('vendor', 'LIKE', '%' . $query . '%')
-                ->paginate($productsPerPage),
-            'productsPerPage' => $productsPerPage
-        ]);
+        return view('index', compact('productsPerPage', 'products'));
     }
 
     /**
@@ -41,12 +41,14 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $product = Product::create($request->all());
+
+        return redirect()->route('products.edit', [$product]);
     }
 
     /**

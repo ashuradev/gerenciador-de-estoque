@@ -10,12 +10,21 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = $request->query('query');
+        $productsPerPage = min($request->query('productsPerPage', 15), 50);
+
         return view('index', [
-            'products' => Product::all()
+            'products' => Product::where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('description', 'LIKE', '%' . $query . '%')
+                ->orWhere('price', 'LIKE', '%' . $query . '%')
+                ->orWhere('vendor', 'LIKE', '%' . $query . '%')
+                ->paginate($productsPerPage),
+            'productsPerPage' => $productsPerPage
         ]);
     }
 

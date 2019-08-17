@@ -1,3 +1,8 @@
 <?php
 
-Route::get('/', 'ProductsController@index');
+Route::redirect('/', '/products');
+
+/**
+ * Products management.
+ */
+Route::resource('products', 'ProductsController')->except(['show']);

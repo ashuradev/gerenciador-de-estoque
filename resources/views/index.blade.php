@@ -11,15 +11,18 @@
                 </div>
 
                 <div class="col-md-5">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar produtos baseado no nome, descrição, fornecedor, preço...">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" name="query" class="form-control" placeholder="Buscar produtos baseado no nome, descrição, fornecedor, preço...">
+                            <input type="hidden" name="productsPerPage" value="{{ $productsPerPage }}">
 
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="col-md-2 ml-auto">

@@ -1,5 +1,8 @@
 document
     .getElementById('select-products-count')
     .onchange = function() {
-        location.href = '?productsPerPage=' + this.value
+        const href = location.href.replace(/productsPerPage=.*/, 'productsPerPage=' + this.value)
+
+
+        location.href = href.includes('?') ? href : '?productsPerPage=' + this.value
     }

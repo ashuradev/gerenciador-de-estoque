@@ -44,9 +44,9 @@
                     </div>
                 </div>
 
-                <h6 class="my-2">
+                <a href="{{ url()->current() }}" class="text-decoration-none text-dark h6 my-2">
                     @yield('title')
-                </h6>
+                </a>
             </header>
 
             @yield('content')

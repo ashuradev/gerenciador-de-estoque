@@ -10,7 +10,7 @@ Um CRUD básico de produtos criado utilizando Laravel e Bootstrap.
 - [x] Criar o layout
 - [x] Mostrar a lista de produtos na página inicial
 - [x] Criar o formulário de criar produtos
-- [ ] Criar um formulário para editar produtos
+- [x] Criar um formulário para editar produtos
 - [ ] Criar um botão para deletar produtos
 - [ ] Inserir o CRUD num painel admin (AdminLTE)
 - [ ] Criar uma API

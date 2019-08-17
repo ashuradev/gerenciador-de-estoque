@@ -35,7 +35,10 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('form', [
+            'title' => 'Criar novo produto',
+            'action' => route('products.store')
+        ]);
     }
 
     /**
